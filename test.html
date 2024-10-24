@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Dialog Example</title>
+    <style>
+        dialog {
+            padding: 20px;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <button id="openDialog">Open Dialog</button>
+
+    <dialog id="userDialog">
+        <form method="dialog">
+            <label for="name">Name:</label>
+            <input type="text" id="name" required>
+            <br>
+            <label for="age">Age:</label>
+            <input type="number" id="age" required>
+            <br>
+            <label for="hobby">Hobby:</label>
+            <input type="text" id="hobby" required>
+            <br><br>
+            <button id="submit">Submit</button>
+        </form>
+    </dialog>
+
+    <script>
+        const dialog = document.getElementById('userDialog');
+        const button = document.getElementById('openDialog');
+        const submitButton = document.getElementById('submit');
+
+        // Open the dialog when the button is clicked
+        button.addEventListener('click', () => {
+            dialog.showModal();
+        });
+
+        // Handle form submission
+        submitButton.addEventListener('click', () => {
+            const userInfo = {
+                name: document.getElementById('name').value,
+                age: document.getElementById('age').value,
+                hobby: document.getElementById('hobby').value,
+            };
+
+            // Log user info to console
+            console.log(userInfo);
+
+            // Close the dialog
+            dialog.close();
+        });
+    </script>
+</body>
+</html>
