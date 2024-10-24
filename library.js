@@ -32,38 +32,31 @@ add.addEventListener('click', () => {
 });
 
 submit.addEventListener('click', (event) => {
-    event.preventDefault(); // Prevent default form submission behavior
+    event.preventDefault(); 
 
-    // Get the user input values
     const title = document.getElementById('title').value;
     const author = document.getElementById('author').value;
     const pages = document.getElementById('pages').value;
     const read = document.getElementById('isRead').checked;
 
-    // Create a new Book object and add it to the library array
+    
     const newBook = new Book(title, author, pages, read);
     myLibrary.push(newBook);
 
-    // Clear the form inputs
+    
     form.reset();
-
-    // Display the updated list of books
     displayBooks();
-
-    // Close the dialog after submission
     dialog.close();
 });
 
 function displayBooks() {
-    // Clear the previous content to avoid duplicates
+    
     content.innerHTML = '';
 
-    // Loop through the library array and create cards for each book
     myLibrary.forEach((book, index) => {
         const card = document.createElement('div');
         card.classList.add('card');
 
-        // Book details
         card.innerHTML = `
             <p><strong>Title:</strong> ${book.title}</p>
             <p><strong>Author:</strong> ${book.author}</p>
@@ -71,12 +64,10 @@ function displayBooks() {
             <p><strong>Read:</strong> ${book.read ? 'Yes' : 'No'}</p>
         `;
 
-        // Delete button
         const delet = document.createElement('button');
         delet.classList.add('delete');
         delet.textContent = 'Delete';
 
-        //read togle
         const read = document.createElement('button')
         read.classList.add('read')
         read.textContent = ('read')
@@ -86,13 +77,11 @@ function displayBooks() {
             displayBooks();
         })
         
-        // Add event listener to remove the book
         delet.addEventListener('click', () => {
-            myLibrary.splice(index, 1);  // Remove the book from the array
-            displayBooks();  // Update the display
+            myLibrary.splice(index, 1);  
+            displayBooks();  
         });
 
-        // Append the delete button to the card and card to the content container
         card.appendChild(read)
         card.appendChild(delet);
         content.appendChild(card);
